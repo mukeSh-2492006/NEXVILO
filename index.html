@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXVILO — Compare Smarter</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#home"><span class="logo-mark">N</span><span>NEXVILO</span></a>
+    <nav id="nav">
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#comparison">Comparison <span id="compareBadge" class="badge">0</span></a>
+      <a href="#recommendations">Recommendations</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">SMART PRODUCT DISCOVERY</p>
+        <h1>Find better.<br><span>Compare smarter.</span></h1>
+        <p class="hero-text">NEXVILO helps you discover reliable, affordable everyday products without getting lost in too many choices.</p>
+        <div class="hero-search">
+          <input id="heroSearch" type="search" placeholder="Search products, brands or categories..." />
+          <button onclick="searchProducts()">Search</button>
+        </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="#products">Explore Products</a>
+          <a class="btn secondary" href="#comparison">Compare Products</a>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="mini-score"><span>Quality</span><strong>92</strong><small>/100</small></div>
+        <div class="mini-score"><span>Value</span><strong>91</strong><small>/100</small></div>
+        <div class="mini-product">
+          <div class="product-art art-headphones">◉</div>
+          <div><b>Everyday Choice</b><span>Balanced quality + price</span></div>
+          <span class="pill green">BEST VALUE</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section categories">
+      <div class="section-head"><div><p class="eyebrow">BROWSE</p><h2>Shop by category</h2></div></div>
+      <div class="category-grid">
+        <button onclick="setCategory('Electronics')">🎧 <span>Electronics</span></button>
+        <button onclick="setCategory('Home & Kitchen')">🏠 <span>Home & Kitchen</span></button>
+        <button onclick="setCategory('Personal Care')">✨ <span>Personal Care</span></button>
+        <button onclick="setCategory('Stationery')">📚 <span>Stationery</span></button>
+        <button onclick="setCategory('Daily Essentials')">🛍️ <span>Daily Essentials</span></button>
+        <button onclick="setCategory('Fashion')">👟 <span>Fashion</span></button>
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="section-head products-head">
+        <div><p class="eyebrow">DISCOVER</p><h2>Featured products</h2><p class="muted">Compare quality, price and customer feedback at a glance.</p></div>
+        <div class="controls">
+          <select id="categoryFilter" onchange="renderProducts()">
+            <option value="All">All categories</option>
+            <option>Electronics</option><option>Home & Kitchen</option><option>Personal Care</option>
+            <option>Stationery</option><option>Daily Essentials</option><option>Fashion</option>
+          </select>
+          <select id="sortFilter" onchange="renderProducts()">
+            <option value="value">Best Value</option><option value="priceLow">Price: Low to High</option>
+            <option value="rating">Highest Rating</option><option value="quality">Highest Quality</option>
+          </select>
+        </div>
+      </div>
+      <div id="productGrid" class="product-grid"></div>
+    </section>
+
+    <section id="comparison" class="section comparison-section">
+      <div class="section-head">
+        <div><p class="eyebrow">SIDE-BY-SIDE</p><h2>Product comparison</h2><p class="muted">Select 2–3 products to compare their real-world value.</p></div>
+        <button class="btn secondary small" onclick="clearCompare()">Clear selection</button>
+      </div>
+      <div id="comparisonArea"></div>
+    </section>
+
+    <section id="recommendations" class="section">
+      <div class="section-head"><div><p class="eyebrow">SMART PICKS</p><h2>Recommendations</h2><p class="muted">Simple signals to help you narrow down your choices.</p></div></div>
+      <div class="recommend-grid">
+        <div class="recommend-card"><span class="rec-icon">🏆</span><h3>Best Value</h3><p>Strong balance between price, quality and reviews.</p><button onclick="sortBy('value')">View picks →</button></div>
+        <div class="recommend-card"><span class="rec-icon">⭐</span><h3>Highly Rated</h3><p>Products with consistently strong customer ratings.</p><button onclick="sortBy('rating')">View picks →</button></div>
+        <div class="recommend-card"><span class="rec-icon">💰</span><h3>Budget Friendly</h3><p>Affordable options for everyday shopping.</p><button onclick="sortBy('priceLow')">View picks →</button></div>
+        <div class="recommend-card"><span class="rec-icon">🛡️</span><h3>High Quality</h3><p>Products with stronger quality scores.</p><button onclick="sortBy('quality')">View picks →</button></div>
+      </div>
+    </section>
+
+    <section id="reviews" class="section reviews-section">
+      <div class="section-head"><div><p class="eyebrow">CUSTOMER VOICE</p><h2>What shoppers say</h2></div></div>
+      <div class="review-grid">
+        <article class="review"><div class="stars">★★★★★</div><p>“The comparison view made it much easier to understand what I was actually paying for.”</p><b>Priya R.</b><span>Verified shopper</span></article>
+        <article class="review"><div class="stars">★★★★☆</div><p>“I like seeing quality and value separately instead of only looking at ratings.”</p><b>Arjun K.</b><span>Verified shopper</span></article>
+        <article class="review"><div class="stars">★★★★★</div><p>“The best-value recommendation helped me shortlist products quickly.”</p><b>Meghana S.</b><span>Verified shopper</span></article>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="about-box">
+        <div><p class="eyebrow">ABOUT NEXVILO</p><h2>Less confusion. Better decisions.</h2></div>
+        <p>Consumers often face too many choices, varying product quality and unclear price-to-value trade-offs. NEXVILO brings price, ratings, reviews, quality and value signals into one simple comparison experience.</p>
+        <div class="about-stats"><div><strong>6+</strong><span>Categories</span></div><div><strong>10+</strong><span>Demo products</span></div><div><strong>3</strong><span>Comparison slots</span></div></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="contact-copy"><p class="eyebrow">CONTACT</p><h2>Have feedback?</h2><p>Tell us what would make product discovery easier for you.</p></div>
+      <form onsubmit="submitContact(event)" class="contact-form">
+        <input required placeholder="Your name" />
+        <input required type="email" placeholder="Email address" />
+        <textarea required rows="4" placeholder="Your message"></textarea>
+        <button class="btn primary">Send message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer><div class="brand"><span class="logo-mark">N</span><span>NEXVILO</span></div><p>Find better. Compare smarter.</p><small>Prototype • Mock data • Backend-ready structure</small></footer>
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
